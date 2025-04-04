@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Property - EthioProperties</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button id="en-lang">English</button>
+        <button id="am-lang">አማርኛ</button>
+        <button id="om-lang">Afaan Oromoo</button>
+    </div>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">EthioProperties</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="buy.html" data-i18n="buy">Buy</a></li>
+            <li><a href="rent.html" data-i18n="rent">Rent</a></li>
+            <li><a href="shortlet.html" data-i18n="shortlet">Shortlet</a></li>
+            <li><a href="new-projects.html" data-i18n="new_projects">New Projects</a></li>
+            <li><a href="services.html" data-i18n="services">Services</a></li>
+            <li><a href="agents.html" data-i18n="agents">Agents</a></li>
+            <li><a href="area-guides.html" data-i18n="area_guides">Area Guides</a></li>
+            <li><a href="blogs.html" data-i18n="blogs">Blogs</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <!-- Will be populated by auth.js -->
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="post-property-container">
+        <h1 data-i18n="post_property">Post Property</h1>
+        
+        <form id="post-property-form" class="disabled">
+            <div class="form-section">
+                <h2 data-i18n="property_details">Property Details</h2>
+                
+                <div class="form-group">
+                    <label for="property-title" data-i18n="property_title">Property Title*</label>
+                    <input type="text" id="property-title" placeholder="e.g. Beautiful 3 Bedroom Apartment in Bole" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="property-description" data-i18n="description">Description*</label>
+                    <textarea id="property-description" rows="5" placeholder="Describe your property in detail..." required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="property-type" data-i18n="listing_type">Listing Type*</label>
+                        <select id="property-type" required>
+                            <option value="" disabled selected data-i18n="select_type">Select Type</option>
+                            <option value="buy" data-i18n="buy">Buy</option>
+                            <option value="rent" data-i18n="rent">Rent</option>
+                            <option value="shortlet" data-i18n="shortlet">Shortlet</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property-category" data-i18n="property_type">Property Type*</label>
+                        <select id="property-category" required>
+                            <option value="" disabled selected data-i18n="select_category">Select Category</option>
+                            <option value="apartment" data-i18n="apartment">Apartment</option>
+                            <option value="house" data-i18n="house">House</option>
+                            <option value="villa" data-i18n="villa">Villa</option>
+                            <option value="land" data-i18n="land">Land</option>
+                            <option value="commercial" data-i18n="commercial">Commercial</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="property-price" data-i18n="price">Price (ETB)*</label>
+                        <input type="number" id="property-price" placeholder="e.g. 5000000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property-bedrooms" data-i18n="bedrooms">Bedrooms</label>
+                        <select id="property-bedrooms">
+                            <option value="0" data-i18n="studio">Studio</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property-bathrooms" data-i18n="bathrooms">Bathrooms</label>
+                        <select id="property-bathrooms">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property-area" data-i18n="area">Area (sqm)</label>
+                        <input type="number" id="property-area" placeholder="e.g. 150">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="property-address" data-i18n="address">Address*</label>
+                    <input type="text" id="property-address" placeholder="e.g. Bole Road, near Friendship Center" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="property-city" data-i18n="city">City*</label>
+                    <input type="text" id="property-city" placeholder="e.g. Addis Ababa" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="property-featured">
+                    <label for="property-featured" data-i18n="featured_listing">Feature this listing (additional fee may apply)</label>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 data-i18n="property_images">Property Images*</h2>
+                <p data-i18n="upload_instructions">Upload at least 3 high-quality images of your property (max 10 images)</p>
+                
+                <div class="image-upload-container">
+                    <input type="file" id="property-images" accept="image/*" multiple required>
+                    <label for="property-images" class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span data-i18n="upload_images">Upload Images</span>
+                    </label>
+                    <div id="image-preview" class="image-preview"></div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 data-i18n="contact_info">Contact Information</h2>
+                <p data-i18n="contact_info_note">Your contact information will be displayed with the property listing</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contact-name" data-i18n="name">Name</label>
+                        <input type="text" id="contact-name" placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-phone" data-i18n="phone">Phone</label>
+                        <input type="tel" id="contact-phone" placeholder="Your phone number">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-email" data-i18n="email">Email</label>
+                    <input type="email" id="contact-email" placeholder="Your email address">
+                </div>
+            </div>
+            
+            <div class="form-submit">
+                <button type="submit" data-i18n="submit_property">Submit Property</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="payment-content">
+                <!-- Payment content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="toast hidden">
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/property.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Image preview functionality
+        document.getElementById('property-images').addEventListener('change', function(e) {
+            const preview = document.getElementById('image-preview');
+            preview.innerHTML = '';
+            
+            const files = e.target.files;
+            if (files.length > 10) {
+                showNotification('You can upload a maximum of 10 images', 'error');
+                this.value = '';
+                return;
+            }
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.match('image.*')) continue;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
