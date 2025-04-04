@@ -1,1 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthioProperties - Find Your Dream Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button id="en-lang">English</button>
+        <button id="am-lang">አማርኛ</button>
+        <button id="om-lang">Afaan Oromoo</button>
+    </div>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">EthioProperties</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="buy.html" data-i18n="buy">Buy</a></li>
+            <li><a href="rent.html" data-i18n="rent">Rent</a></li>
+            <li><a href="shortlet.html" data-i18n="shortlet">Shortlet</a></li>
+            <li><a href="new-projects.html" data-i18n="new_projects">New Projects</a></li>
+            <li><a href="services.html" data-i18n="services">Services</a></li>
+            <li><a href="agents.html" data-i18n="agents">Agents</a></li>
+            <li><a href="area-guides.html" data-i18n="area_guides">Area Guides</a></li>
+            <li><a href="blogs.html" data-i18n="blogs">Blogs</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button id="post-property-btn" data-i18n="post_property">Post Property</button>
+            <button id="login-btn" data-i18n="login">Login</button>
+            <button id="signup-btn" data-i18n="signup">Sign Up</button>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Auth Modals -->
+    <div id="auth-modals">
+        <!-- Login Modal -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 data-i18n="login">Login</h2>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit" data-i18n="login">Login</button>
+                </form>
+                <p data-i18n="no_account">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+                <div class="social-login">
+                    <button class="google-login" data-i18n="login_with_google">Login with Google</button>
+                    <button class="facebook-login" data-i18n="login_with_facebook">Login with Facebook</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Modal -->
+        <div id="signup-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 data-i18n="signup">Sign Up</h2>
+                <form id="signup-form">
+                    <input type="text" id="signup-name" placeholder="Full Name" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <select id="user-type">
+                        <option value="regular" data-i18n="regular_user">Regular User</option>
+                        <option value="developer" data-i18n="real_estate_developer">Real Estate Developer</option>
+                        <option value="agent" data-i18n="agent">Agent</option>
+                    </select>
+                    <button type="submit" data-i18n="signup">Sign Up</button>
+                </form>
+                <p data-i18n="have_account">Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-i18n="hero_title">Find Your Dream Home in Ethiopia</h1>
+                <p data-i18n="hero_subtitle">Thousands of properties for sale, rent, or short-term stays</p>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-tabs">
+                        <button class="active" data-search-type="buy" data-i18n="buy">Buy</button>
+                        <button data-search-type="rent" data-i18n="rent">Rent</button>
+                        <button data-search-type="shortlet" data-i18n="shortlet">Shortlet</button>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search by location, property type, etc." data-i18n="search_placeholder">
+                        <button data-i18n="search">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Properties -->
+        <section class="featured-properties">
+            <h2 data-i18n="featured_properties">Featured Properties</h2>
+            <div class="properties-grid" id="featured-properties">
+                <!-- Properties will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Property Categories -->
+        <section class="property-categories">
+            <h2 data-i18n="browse_categories">Browse Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="images/apartment-icon.png" alt="Apartments">
+                    <h3 data-i18n="apartments">Apartments</h3>
+                </div>
+                <div class="category-card">
+                    <img src="images/house-icon.png" alt="Houses">
+                    <h3 data-i18n="houses">Houses</h3>
+                </div>
+                <div class="category-card">
+                    <img src="images/villa-icon.png" alt="Villas">
+                    <h3 data-i18n="villas">Villas</h3>
+                </div>
+                <div class="category-card">
+                    <img src="images/land-icon.png" alt="Land">
+                    <h3 data-i18n="land">Land</h3>
+                </div>
+                <div class="category-card">
+                    <img src="images/commercial-icon.png" alt="Commercial">
+                    <h3 data-i18n="commercial">Commercial</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other sections like testimonials, stats, etc. -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-i18n="quick_links">Quick Links</h3>
+                <ul>
+                    <li><a href="buy.html" data-i18n="buy">Buy</a></li>
+                    <li><a href="rent.html" data-i18n="rent">Rent</a></li>
+                    <li><a href="shortlet.html" data-i18n="shortlet">Shortlet</a></li>
+                    <li><a href="post-property.html" data-i18n="post_property">Post Property</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 data-i18n="company">Company</h3>
+                <ul>
+                    <li><a href="#" data-i18n="about_us">About Us</a></li>
+                    <li><a href="#" data-i18n="contact_us">Contact Us</a></li>
+                    <li><a href="#" data-i18n="careers">Careers</a></li>
+                    <li><a href="#" data-i18n="blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 data-i18n="legal">Legal</h3>
+                <ul>
+                    <li><a href="#" data-i18n="terms">Terms of Service</a></li>
+                    <li><a href="#" data-i18n="privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="cookies">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 data-i18n="connect">Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="copyright">&copy; 2023 EthioProperties. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="toast hidden">
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/property.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
