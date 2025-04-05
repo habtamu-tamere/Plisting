@@ -1,13 +1,12 @@
-
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAe-pRst0uNZBMOchQIIpAYlLdGrysZ950",
-  authDomain: "etpro-a379f.firebaseapp.com",
-  projectId: "etpro-a379f",
-  storageBucket: "etpro-a379f.firebasestorage.app",
-  messagingSenderId: "262837338820",
-  appId: "1:262837338820:web:fe146633aede6d932fff91"
-
+    apiKey: "AIzaSyA6m95mbim9ftrMdzRAIvyYLu902LDMFoc",
+    authDomain: "realestate-4a5e6.firebaseapp.com",
+    projectId: "realestate-4a5e6",
+    storageBucket: "realestate-4a5e6.firebasestorage.app",
+    messagingSenderId: "440556777624",
+    appId: "1:440556777624:web:ec982b1855a4b1f06de0ed",
+    measurementId: "G-V8GM1SFQPL"
 };
 
 // Initialize Firebase
@@ -23,12 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initAuth();
     initProperties();
     initModals();
+    initMobileMenu()
     
     // Load featured properties
     loadFeaturedProperties();
 });
-
-
 
 // Initialize modals
 function initModals() {
@@ -125,13 +123,46 @@ function showNotification(message, type) {
 }
 
 // Initialize mobile menu
+// Initialize mobile menu toggle
 function initMobileMenu() {
     const mobileMenuBtn = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
+    const authButtons = document.querySelector('.auth-buttons');
     
     if (mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener('click', () => {
+            // Toggle mobile menu
             navLinks.classList.toggle('show');
+            // Add to your mobile menu toggle function
+            document.body.style.overflow = navLinks.classList.contains('show') ? 'hidden' : 'auto';
+            
+            // Toggle burger icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+            
+            // Toggle auth buttons if they exist
+            if (authButtons) {
+                authButtons.style.display = navLinks.classList.contains('show') ? 'flex' : 'none';
+            }
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                
+                if (authButtons) {
+                    authButtons.style.display = 'none';
+                }
+            });
         });
     }
 }
