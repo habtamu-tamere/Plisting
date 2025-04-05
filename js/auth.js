@@ -153,7 +153,7 @@ function updateAuthUI(user) {
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="dashboard.html" data-i18n="dashboard">Dashboard</a>
+                    <a href="post-property.html" data-i18n="post_property">Dashboard</a>
                     <a href="#" id="logout-btn" data-i18n="logout">Logout</a>
                 </div>
             </div>
