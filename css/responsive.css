@@ -1,169 +1,146 @@
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA6m95mbim9ftrMdzRAIvyYLu902LDMFoc",
-    authDomain: "realestate-4a5e6.firebaseapp.com",
-    projectId: "realestate-4a5e6",
-    storageBucket: "realestate-4a5e6.firebasestorage.app",
-    messagingSenderId: "440556777624",
-    appId: "1:440556777624:web:ec982b1855a4b1f06de0ed",
-    measurementId: "G-V8GM1SFQPL"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
-
-// Initialize language
-document.addEventListener('DOMContentLoaded', () => {
-    initLanguage();
-    initAuth();
-    initProperties();
-    initModals();
-    initMobileMenu()
-    
-    // Load featured properties
-    loadFeaturedProperties();
-});
-
-// Initialize modals
-function initModals() {
-    // Login modal
-    const loginBtn = document.getElementById('login-btn');
-    const loginModal = document.getElementById('login-modal');
-    
-    if (loginBtn && loginModal) {
-        loginBtn.addEventListener('click', () => showModal('login-modal'));
-    }
-    
-    // Signup modal
-    const signupBtn = document.getElementById('signup-btn');
-    const signupModal = document.getElementById('signup-modal');
-    
-    if (signupBtn && signupModal) {
-        signupBtn.addEventListener('click', () => showModal('signup-modal'));
-    }
-    
-    // Show signup from login
-    const showSignup = document.getElementById('show-signup');
-    if (showSignup) {
-        showSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal('login-modal');
-            showModal('signup-modal');
-        });
-    }
-    
-    // Show login from signup
-    const showLogin = document.getElementById('show-login');
-    if (showLogin) {
-        showLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal('signup-modal');
-            showModal('login-modal');
-        });
-    }
-    
-    // Post property button
-    const postPropertyBtn = document.getElementById('post-property-btn');
-    if (postPropertyBtn) {
-        postPropertyBtn.addEventListener('click', () => {
-            const user = auth.currentUser;
-            if (user) {
-                window.location.href = 'post-property.html';
-            } else {
-                showModal('login-modal');
-            }
-        });
-    }
-    
-    // Close modals when clicking X or outside
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal') || e.target.classList.contains('close-modal')) {
-                closeModal(modal.id);
-            }
-        });
-    });
+/* Responsive Styles */
+/* Mobile Menu Styles */
+.mobile-menu i {
+    transition: var(--transition);
 }
 
-// Show modal
-function showModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+.nav-links {
+    transition: var(--transition);
+}
+
+/* .nav-links.show::before {
+    content: '';
+    position: fixed;
+    top: 0px;
+    left: 0%;
+    width: 100%;
+    height: max-content;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+} */
+
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 40px;
+        left: -100%;
+        width: 100%;
+        height: 90vh;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1rem 0;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.show {
+        left: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-align: center;
+        padding: 0.2rem 0;
+    }
+    
+    .nav-links a {
+        padding: 0.1rem 1rem;
+        display: block;
+    }
+    
+    .mobile-menu {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .auth-buttons {
+        display: none;
+    }
+    
+    /* Show auth buttons in mobile menu */
+    .nav-links.show + .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: white;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .nav-links.show + .auth-buttons button {
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
     }
 }
 
-// Close modal
-function closeModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+@media (max-width: 768px) {
+    .search-tabs {
+        flex-direction: column;
+    }
+    
+    .search-tabs button {
+        padding: 0.8rem;
+    }
+    
+    .search-bar {
+        flex-direction: column;
+    }
+    
+    .search-bar input {
+        border-radius: var(--border-radius);
+        margin-bottom: 0.5rem;
+    }
+    
+    .search-bar button {
+        border-radius: var(--border-radius);
+        padding: 0.8rem;
+    }
+    
+    .property-categories {
+        padding: 2rem 1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-// Show notification toast
-function showNotification(message, type) {
-    const toast = document.getElementById('notification-toast');
-    const toastMessage = document.getElementById('toast-message');
+@media (max-width: 576px) {
+    .navbar {
+        padding: 1rem;
+    }
     
-    if (!toast || !toastMessage) return;
+    .logo a {
+        font-size: 1.5rem;
+    }
     
-    toast.className = 'toast show ' + type;
-    toastMessage.textContent = message;
+    .hero {
+        padding: 3rem 1rem;
+    }
     
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 5000);
-}
-
-// Initialize mobile menu
-// Initialize mobile menu toggle
-function initMobileMenu() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    const authButtons = document.querySelector('.auth-buttons');
+    .featured-properties, .property-categories {
+        padding: 2rem 1rem;
+    }
     
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            // Toggle mobile menu
-            navLinks.classList.toggle('show');
-            // Add to your mobile menu toggle function
-            document.body.style.overflow = navLinks.classList.contains('show') ? 'hidden' : 'auto';
-            
-            // Toggle burger icon
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('show')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-            
-            // Toggle auth buttons if they exist
-            if (authButtons) {
-                authButtons.style.display = navLinks.classList.contains('show') ? 'flex' : 'none';
-            }
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('show');
-                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-                
-                if (authButtons) {
-                    authButtons.style.display = 'none';
-                }
-            });
-        });
+    .footer-content {
+        grid-template-columns: 1fr;
     }
 }
